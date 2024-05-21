@@ -740,7 +740,7 @@ class DetectMultiBackend(nn.Module):
         """Converts a NumPy array to a torch tensor, maintaining device compatibility."""
         return torch.from_numpy(x).to(self.device) if isinstance(x, np.ndarray) else x
 
-    def warmup(self, imgsz=(1, 3, 416, 416)):
+    def warmup(self, imgsz=(1, 3, 640, 640)):
         """Performs a single inference warmup to initialize model weights, accepting an `imgsz` tuple for image size."""
         warmup_types = self.pt, self.jit, self.onnx, self.engine, self.saved_model, self.pb, self.triton
         if any(warmup_types) and (self.device.type != "cpu" or self.triton):
@@ -817,7 +817,7 @@ class AutoShape(nn.Module):
         return self
 
     @smart_inference_mode()
-    def forward(self, ims, size=640, augment=False, profile=False):
+    def forward(self, ims, size=416, augment=False, profile=False):
         """
         Performs inference on inputs with optional augment & profiling.
 
