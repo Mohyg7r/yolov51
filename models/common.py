@@ -817,7 +817,7 @@ class AutoShape(nn.Module):
         return self
 
     @smart_inference_mode()
-    def forward(self, ims, size=416, augment=False, profile=False):
+    def forward(self, ims, size=640, augment=False, profile=False):
         """
         Performs inference on inputs with optional augment & profiling.
 
